@@ -16,7 +16,7 @@ export default function Home() {
                 <button className={styles.button}>Create Account</button>
             </div>
             <div className={styles.image}>
-                <Image src="/../public/starknet.png" alt="starknet logo" width="250px" height="250px"/>
+                <Image src={"/starknet.png"} alt="starknet logo" width="250px" height="250px"/>
             </div>
         </div>
         <div className={styles.features}>
