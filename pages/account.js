@@ -17,7 +17,7 @@ export default function Home() {
             <p className={styles.account_address}>0xb3gh3548937jmghfhffg433d</p>
             <div className={styles.actions}>
                 <p className={styles.action}>
-                  <i class="fa-solid fa-paper-plane fa-2x"></i> Send
+                  <i className="fa-solid fa-paper-plane fa-2x"></i> Send
                   </p>
                 <p className={styles.action}>
                   <i className="fa-solid fa-download fa-2x"></i>
