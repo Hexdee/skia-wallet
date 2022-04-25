@@ -8,7 +8,7 @@
 
 .main {
     flex: auto;
-    background-color: #996694;
+    background-color: #94618E;
     color: #49274a;
     padding: 32px;
     display: flex;
@@ -21,9 +21,9 @@
 .account,
 .transactions {
     border: 3px solid #49274a;
-    /* background-color: #84517E; */
+    background-color: seashell;
     border-radius: 10px;
-    padding: 8px;
+    padding: 8px 16px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -62,7 +62,8 @@
 }
 
 .account_name {
-    font-size: 40px;
+    color: tomato;
+    font-size: 50px;
     font-weight: 700;
 }
 

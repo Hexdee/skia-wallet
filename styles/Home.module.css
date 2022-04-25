@@ -64,7 +64,7 @@
 }
 
 .feature {
-  border: 3px solid #94618E;
+  border: 3px solid tomato;
   width: 300px;
   height: 350px;
   padding: 16px;
@@ -98,8 +98,11 @@
   font-weight: 700;
 }
 
-.button {
+.logo:hover {
+  color: tomato;
+}
 
+.button {
   font-weight: bold;
   color: white;
   background-color: #49274A;
@@ -107,4 +110,8 @@
   white-space: nowrap;
   padding: 16px 32px;
   border-radius: 10px;
+}
+
+.button:hover {
+  background-color: tomato;
 }

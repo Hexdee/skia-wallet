@@ -8,6 +8,9 @@ async function createAccount() {
   const starkKeyPub = ec.getStarkKey(starkKeyPair);
   const accounts = [];
   
+  if (typeof(window) == "object") {
+    document.getElementById("status").innerHTML = "Deploying Account, Please wait...";
+  }
   localStorage.setItem("keys", JSON.stringify({keyPair: starkKeyPair, keyPub: starkKeyPub}));
   
   console.log("deploying account....");
@@ -22,7 +25,10 @@ async function createAccount() {
     CompiledAccount.abi,
     contract_address
   );
-    
+
+  if (typeof(window) == "object") {
+    document.getElementById("status").innerHTML = "Initializing Account, Please wait...";
+  }
   console.log("initializing account....");
   await accountContract.initialize(
     starkKeyPub,
@@ -47,6 +53,10 @@ async function createAccount() {
   };
   localStorage.setItem("accounts", JSON.stringify(accounts));
   console.log(`account deployed to ${accountTxn.address}`);
+    if (typeof(window) == "object") {
+    document.getElementById("status").innerHTML = "Your account is ready!";
+  }
+  window.open("/account")
 }
 
 module.exports = {createAccount}
