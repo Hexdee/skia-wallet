@@ -6,6 +6,7 @@ import CompiledAccount from './public/Account.json';
 async function createAccount() {
   const starkKeyPair = ec.genKeyPair();
   const starkKeyPub = ec.getStarkKey(starkKeyPair);
+  const accounts = [];
   
   localStorage.setItem("keys", JSON.stringify({keyPair: starkKeyPair, keyPub: starkKeyPub}));
   
@@ -23,11 +24,28 @@ async function createAccount() {
   );
     
   console.log("initializing account....");
-  const initTxn = await accountContract.initialize(
+  await accountContract.initialize(
     starkKeyPub,
     "0"
   );
-  
+
+  accounts[0] = {
+    name: "Account 1",
+    address: contract_address,
+    tokens: [
+      {
+        "symbol": "ETH",
+        "address": "0x0",
+        "balance": "0.00"
+      },
+      {
+        "symbol": "SKIA",
+        "address": "0x0",
+        "balance": "0.00"
+      }
+    ]
+  };
+  localStorage.setItem("accounts", JSON.stringify(accounts));
   console.log(`account deployed to ${accountTxn.address}`);
 }
 

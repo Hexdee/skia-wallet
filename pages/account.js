@@ -5,19 +5,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-export default function Home() {
-  const [account_name, setAccount_name] = useState("Account 1");
-  const [account_address, setAccount_address] = useState("0x00000000000000000000");
-  const [tokens, setTokens] = useState([
-    {
-      name: 'ETH',
-      balance: "0.000"
-    },
-    {
-      "name": "SKIA",
-      "balance": "0.000"
-    }
-  ]);
+export default function Account(account) {
   const [transactions, setTransactions] = useState([
     {
       title: 'Send',
@@ -43,7 +31,13 @@ export default function Home() {
       from: "0x000000000000000",
       time: "2 hrs"
     },
-  ])
+    ])
+  if (typeof window === 'object') {
+    console.log(JSON.parse(localStorage.getItem("accounts"))[0])
+    account =  account.name ? account : JSON.parse(localStorage.getItem("accounts"))[0];
+    account.tokens.map((token) =>
+    console.log(token.symbol));
+  }
   
   return (
     <div className={styles.body}>
@@ -53,8 +47,8 @@ export default function Home() {
             <div className={styles.settings}>
 
             </div>
-            <h2 className={styles.account_name}>{account_name}</h2>
-            <p className={styles.account_address}>{account_address}</p>
+            <h2 className={styles.account_name}>{account.name}</h2>
+            <p className={styles.account_address}>{account.address + "..."}</p>
             <div className={styles.actions}>
                 <p className={styles.action}>
                   <i className="fa-solid fa-paper-plane fa-2x"></i> Send
@@ -72,12 +66,12 @@ export default function Home() {
                   Stake
                 </p>
             </div>
-              {tokens.map((token, index) => (
+            {account.tokens?.map((token, index) => (
                 <div key={index} className={styles.token}>
-                  <p className={styles.name}>{token.name}</p>
+                  <p className={styles.name}>{token.symbol}</p>
                   <p className={styles.balance}>{token.balance}</p>
                 </div>
-                ))}
+            ))}
             <p className={styles.add}>+</p>
         </div>
         <div className={styles.transactions}>
