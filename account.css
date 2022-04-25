@@ -1,0 +1,89 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+main {
+    min-height: 100vh;
+    background-color: #84517E;
+    color: #49274a;
+    padding: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.account, .transactions {
+    border: 3px solid #49274a;
+    background-color: #84517E;
+    border-radius: 10px;
+    padding: 8px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.account {
+    width: 500px;
+    align-items: center;
+}
+
+.transactions {
+    width: 300px;
+
+}
+
+.token {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.transaction .title, .transaction .details {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.transaction .details {
+    margin-top: -32px;
+}
+
+.add {
+    font-size: 64px;
+    font-weight: 1000;
+}
+
+.account-name {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.account-address {
+    margin-top: -30px;
+    color: seashell;
+}
+
+.token{
+    font-size: 32px;
+}
+
+.token .name {
+    font-weight: 700;
+}
+
+.tx-value {
+    color: seashell;
+}
+
+.activity {
+    padding: 0 32px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
