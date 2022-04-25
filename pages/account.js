@@ -20,15 +20,15 @@ export default function Home() {
                   <i class="fa-solid fa-paper-plane fa-2x"></i> Send
                   </p>
                 <p className={styles.action}>
-                  <i class="fa-solid fa-download fa-2x"></i>
+                  <i className="fa-solid fa-download fa-2x"></i>
                   Receive
                 </p>
                 <p className={styles.action}>
-                  <i class="fa-solid fa-repeat fa-2x"></i>
+                  <i className="fa-solid fa-repeat fa-2x"></i>
                   Swap
                 </p>
                 <p className={styles.action}>
-                  <i class="fa-solid fa-dollar-sign fa-2x"></i>
+                  <i className="fa-solid fa-dollar-sign fa-2x"></i>
                   Stake
                 </p>
             </div>
