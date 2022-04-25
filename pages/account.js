@@ -72,18 +72,18 @@ export default function Home() {
                   Stake
                 </p>
             </div>
-              {tokens.map((token) => (
-                <div className={styles.token}>
-                  <p className>{token.name}</p>
-                  <p>{token.balance}</p>
+              {tokens.map((token, index) => (
+                <div key={index} className={styles.token}>
+                  <p className={styles.name}>{token.name}</p>
+                  <p className={styles.balance}>{token.balance}</p>
                 </div>
                 ))}
             <p className={styles.add}>+</p>
         </div>
         <div className={styles.transactions}>
             <h2>Recent transactions</h2>
-            {transactions.map((transaction) => (
-              <div className={styles.transaction}>
+            {transactions.map((transaction, index) => (
+              <div key={index} className={styles.transaction}>
                 <div className={styles.title}>
                     <h3 className={styles.tx_title}>{transaction.title}</h3>
                     <p className={styles.tx_value}>{transaction.value}</p>
