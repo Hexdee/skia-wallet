@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Header from './components/Header'
+import LoadingSpinner from "./components/Loader";
 import Footer from './components/Footer'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -15,6 +16,7 @@ export default function Home() {
                 <h2>SKIA WALLET is live on Starknet!</h2>
                 <p>The first web based wallet on startknet. Skia wallet is accessible from any device. <br/>Get started by creating an account.</p>
                 <button className={styles.button}>Create Account</button>
+                <LoadingSpinner/>
             </div>
             <div className={styles.image}>
                 <Image src={"/starknet.png"} alt="starknet logo" width="250px" height="250px"/>
