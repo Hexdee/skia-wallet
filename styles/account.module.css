@@ -23,7 +23,7 @@
     border: 3px solid #49274a;
     /* background-color: #84517E; */
     border-radius: 10px;
-    padding: 8px 32px;
+    padding: 8px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -75,6 +75,10 @@
     font-size: 32px;
 }
 
+.transaction, .token {
+  border-bottom: 2px solid #49274a;
+}
+
 .token .name {
     font-weight: 700;
 }
@@ -83,9 +87,18 @@
     color: seashell;
 }
 
-.activity {
+.actions {
     padding: 0 32px;
     width: 100%;
     display: flex;
     justify-content: space-between;
+    gap: 24px;
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }

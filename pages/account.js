@@ -2,6 +2,7 @@ import Image from 'next/image'
 import styles from '../styles/account.module.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export default function Home() {
   return (
@@ -14,10 +15,22 @@ export default function Home() {
             </div>
             <h2 className={styles.account_name}>Account 1</h2>
             <p className={styles.account_address}>0xb3gh3548937jmghfhffg433d</p>
-            <div className={styles.activity}>
-                <p>Send</p>
-                <p>Receive</p>
-                <p>Swap</p>
+            <div className={styles.actions}>
+                <p className={styles.action}>
+                  <i class="fa-solid fa-paper-plane fa-2x"></i> Send
+                  </p>
+                <p className={styles.action}>
+                  <i class="fa-solid fa-download fa-2x"></i>
+                  Receive
+                </p>
+                <p className={styles.action}>
+                  <i class="fa-solid fa-repeat fa-2x"></i>
+                  Swap
+                </p>
+                <p className={styles.action}>
+                  <i class="fa-solid fa-dollar-sign fa-2x"></i>
+                  Stake
+                </p>
             </div>
             <div className={styles.token}>
                 <p className={styles.name}>ETH</p>
