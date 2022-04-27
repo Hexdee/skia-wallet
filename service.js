@@ -3,7 +3,6 @@ import { genKeyPair, getKeyPair, getStarkKey } from 'starknet/dist/utils/ellipti
 import { hexToDecimalString } from 'starknet/utils/number';
 import { transformCallsToMulticallArrays } from 'starknet/utils/transaction'
 import CompiledAccount from './public/Account.json';
-import erc20Json from './public/erc20.json'
 
 async function createAccount() {
   const privKey = stark.randomAddress();
@@ -54,9 +53,6 @@ async function createAccount() {
   };
   localStorage.setItem("accounts", JSON.stringify(accounts));
   console.log(`account deployed to ${accountTxn.address}`);
-    if (typeof(window) == "object") {
-    document.getElementById("status").innerHTML = "Your account is ready!";
-  }
   location.href = "/account"
 }
 

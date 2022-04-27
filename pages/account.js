@@ -63,10 +63,12 @@ export default function Account() {
                   <i className="fa-solid fa-download fa-2x"></i>
                   Receive
                 </p>
+                <Link href='/send'>
                 <p className={styles.action}>
                   <i className="fa-solid fa-repeat fa-2x"></i>
                   Swap
                 </p>
+                </Link>
                 <p className={styles.action}>
                   <i className="fa-solid fa-dollar-sign fa-2x"></i>
                   Stake
