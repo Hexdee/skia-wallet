@@ -1,17 +1,21 @@
-import { ec, defaultProvider, Contract, hash, Account } from 'starknet';
-import { getKeyPair } from 'starknet/dist/utils/ellipticCurve';
+import { ec, defaultProvider, Contract, hash, Account, number, stark } from 'starknet';
+import { genKeyPair, getKeyPair, getStarkKey } from 'starknet/dist/utils/ellipticCurve';
+import { hexToDecimalString } from 'starknet/utils/number';
 import { transformCallsToMulticallArrays } from 'starknet/utils/transaction'
 import CompiledAccount from './public/Account.json';
+import erc20Json from './public/erc20.json'
 
 async function createAccount() {
-  const starkKeyPair = ec.genKeyPair();
-  const starkKeyPub = ec.getStarkKey(starkKeyPair);
+  const privKey = stark.randomAddress();
+  const starkKeyPair = getKeyPair(privKey);
+  let pubKey = ec.getStarkKey(starkKeyPair);
   const accounts = [];
+  console.log(`Private key: ${privKey}, Public key: ${pubKey}`)
   
   if (typeof(window) == "object") {
-    document.getElementById("status").innerHTML = "Deploying Account, Please wait...";
+    document.getElementById("status").innerHTML = "Creating account...";
   }
-  localStorage.setItem("keys", JSON.stringify({keyPair: starkKeyPair, keyPub: starkKeyPub}));
+  localStorage.setItem("keys", JSON.stringify({pubKey, privKey}));
   
   console.log("deploying account....");
 
@@ -26,12 +30,9 @@ async function createAccount() {
     contract_address
   );
 
-  if (typeof(window) == "object") {
-    document.getElementById("status").innerHTML = "Initializing Account, Please wait...";
-  }
   console.log("initializing account....");
   await accountContract.initialize(
-    starkKeyPub,
+    pubKey,
     "0"
   );
 
@@ -56,7 +57,51 @@ async function createAccount() {
     if (typeof(window) == "object") {
     document.getElementById("status").innerHTML = "Your account is ready!";
   }
-  window.open("/account")
+  location.href = "/account"
 }
 
-module.exports = {createAccount}
+async function transfer(tokenAddress, receiver, amount) {
+  
+const Pkey = "0x052f84e84c571e9fb817d4392afde8e260710b742d4ad62cede7cca4a1003c10"
+const accountAddress = "0x242976053e751b8f1fc64b4a6d9ce086327b0d7135b3870a2f54e62159de2ce"
+//const tokenAddress = "0x1d771896bb0322ca4ef229375206ff1e09f8f9fa5591d4c3e405bc46187a000"
+
+const KeyPair = ec.getKeyPair(Pkey)
+
+const account = new Account(
+    defaultProvider,
+    accountAddress,
+    KeyPair
+)
+  // console.log("Minting 100 tokens...")
+  // const mint = await account.execute(
+  //   {
+  //     contractAddress: tokenAddress,
+  //     entrypoint: "mint",
+  //     calldata: [accountAddress, "100"],
+  //   },
+  //   undefined,
+  //   { maxFee: "0" }
+  // );
+
+  // await defaultProvider.waitForTransaction(mint.transaction_hash)
+
+  console.log("Transferring token...")
+  const transaction = await account.execute(
+    {
+      contractAddress: tokenAddress,
+      entrypoint: "transfer",
+      calldata: [tokenAddress, "10"],
+    },
+    undefined,
+    { maxFee: "0" }
+  );
+
+  const txHash = transaction.transaction_hash
+  console.log(`transaction hash: ${txHash}`)
+
+  await defaultProvider.waitForTransaction(txHash)
+  console.log("transaction completed!")
+}
+
+module.exports = {createAccount, transfer}

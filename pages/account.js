@@ -1,11 +1,15 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Image from 'next/image'
 import styles from '../styles/account.module.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import Link from "next/link";
+import {createAccount} from "../service"
 
-export default function Account(account) {
+export default function Account() {
+  const [hasAccount, setHasAccount] =  useState(false);
+  const [account, setAccount] = useState([])
   const [transactions, setTransactions] = useState([
     {
       title: 'Send',
@@ -32,16 +36,16 @@ export default function Account(account) {
       time: "2 hrs"
     },
     ])
-  if (typeof window === 'object') {
-    console.log(JSON.parse(localStorage.getItem("accounts"))[0])
-    account =  account.name ? account : JSON.parse(localStorage.getItem("accounts"))[0];
-    account.tokens.map((token) =>
-    console.log(token.symbol));
-  }
-  
+  useEffect(() => {
+    if(localStorage.getItem("accounts")) {
+      setAccount(JSON.parse(localStorage.getItem("accounts"))[0]);
+      setHasAccount(true)
+    }
+  }, []);
   return (
     <div className={styles.body}>
         <Header/>
+        { hasAccount ?
         <main className={styles.main}>
         <div className={styles.account}>
             <div className={styles.settings}>
@@ -50,9 +54,11 @@ export default function Account(account) {
             <h2 className={styles.account_name}>{account.name}</h2>
             <p className={styles.account_address}>{account.address + "..."}</p>
             <div className={styles.actions}>
+              <Link href='/send'>
                 <p className={styles.action}>
                   <i className="fa-solid fa-paper-plane fa-2x"></i> Send
-                  </p>
+                </p>
+              </Link>
                 <p className={styles.action}>
                   <i className="fa-solid fa-download fa-2x"></i>
                   Receive
@@ -89,7 +95,14 @@ export default function Account(account) {
               </div>
             ))}
           </div>
-        </main>
+        </main> : 
+        <main className={styles.main}>
+          <div className={styles.noaccount}>
+              <p>You do not have an account yet!</p>
+              <button className={styles.button} onClick={createAccount}>Create Account</button>
+              <p id='status'></p>
+          </div>
+        </main>}
         <Footer/>
     </div>
   )

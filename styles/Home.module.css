@@ -96,6 +96,7 @@
   font-size: 32px;
   font-style: italic;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .logo:hover {

@@ -19,7 +19,7 @@
 }
 
 .account,
-.transactions {
+.transactions, .noaccount {
     max-width: 100%;
     border: 3px solid #49274a;
     background-color: seashell;
@@ -65,10 +65,11 @@
     color: tomato;
     font-size: 50px;
     font-weight: 700;
+    margin: 0;
 }
 
 .account_address {
-    margin-top: -50px;
+    margin-top: 0;
     background-color: white;
     color: blue;
     width: 60%;
@@ -107,4 +108,29 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
+}
+
+.button {
+    font-weight: bold;
+    color: white;
+    background-color: #49274A;
+    border: 0;
+    white-space: nowrap;
+    padding: 16px 32px;
+    border-radius: 10px;
+}
+.button:hover {
+    background-color: tomato;
+}
+
+.noaccount {
+    width: 60%;
+    height: 300px;
+    padding-top: 32px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.noaccount p {
+    font-size: 30px;
 }
