@@ -5,8 +5,12 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import {transfer} from '../service'
 
-export default function Send(props) {
-  console.log(props.account)
+export default function Send() {
+  const [tokens, setTokens] = useState([])
+  useEffect(() => {
+    const accounts = JSON.parse(localStorage.getItem("accounts"))
+    setTokens(accounts[0].tokens)
+  }, []);
   return (
     <div className={styles.body}>
     <Header/>
@@ -14,8 +18,8 @@ export default function Send(props) {
     <h1 className={styles.action}>Send</h1>
     <label className={styles.label}>Token:</label><br/>
     <select name="Token" className={styles.input} id="token">
-      {props.account.token.map((token) =>
-        <option>{token.symbol}</option>
+      {tokens.map((token, index) =>
+        <option key={index}>{token.symbol}</option>
       )}
     </select>
     {/* <input className={styles.input} type="text" id="token" name="token" placeholder="Contract address:"/><br/> */}
